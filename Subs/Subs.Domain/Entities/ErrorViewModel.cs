@@ -1,6 +1,8 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Subs.Models
+namespace Subs.Domain.Entities
 {
     public class ErrorViewModel
     {
