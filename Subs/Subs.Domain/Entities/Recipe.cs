@@ -5,13 +5,11 @@ using System.Text;
 namespace Subs.Domain.Entities
 {
     public class Recipe
-    {        
-        public string Name { get; private set; }
-        public bool IsFree { get; private set; }
-
-        public void CreateRecipe()
-        {
-
-        }
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsFree { get; set; }
+        public int? Price { get; set; }
+        public List<CategoryRecipe> CategoryRecipes { get; set; } = new List<CategoryRecipe>();
     }
 }

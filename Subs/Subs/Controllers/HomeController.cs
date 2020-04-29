@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Subs.Domain.Entities;
+using Subs.Infrastructure.Contexts;
 
 namespace Subs.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SubsDbContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SubsDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -24,6 +27,12 @@ namespace Subs.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Route("someController/somePage")]
+        public IActionResult SomePage()
         {
             return View();
         }

@@ -11,13 +11,13 @@ namespace Subs.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Subs.Domain.Entities.User> _userManager;
+        private readonly SignInManager<Subs.Domain.Entities.User> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Subs.Domain.Entities.User> userManager,
+            SignInManager<Subs.Domain.Entities.User> signInManager,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;

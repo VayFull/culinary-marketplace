@@ -19,14 +19,14 @@ namespace Subs.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Subs.Domain.Entities.User> _signInManager;
+        private readonly UserManager<Subs.Domain.Entities.User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Subs.Domain.Entities.User> userManager,
+            SignInManager<Subs.Domain.Entities.User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -73,7 +73,7 @@ namespace Subs.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Login };
+                var user = new Subs.Domain.Entities.User { UserName = Input.Login };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 
                 await _userManager.AddToRoleAsync(user, "user"); //админ добавляется сразу же в startup'е

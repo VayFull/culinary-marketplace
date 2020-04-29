@@ -15,13 +15,13 @@ namespace Subs.Areas.Identity.Pages.Account.Manage
 {
     public partial class EmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Subs.Domain.Entities.User> _userManager;
+        private readonly SignInManager<Subs.Domain.Entities.User> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Subs.Domain.Entities.User> userManager,
+            SignInManager<Subs.Domain.Entities.User> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -49,7 +49,7 @@ namespace Subs.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Subs.Domain.Entities.User user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;
