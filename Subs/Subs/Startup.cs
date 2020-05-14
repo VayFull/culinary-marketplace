@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Subs.Infrastructure;
 using Subs.Infrastructure.Contexts;
 using Subs.Domain.Entities;
+using Subs.Services;
 
 namespace Subs
 {
@@ -29,17 +30,13 @@ namespace Subs
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Subs.Infrastructure")));
-
             services.AddDbContext<SubsDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Subs.Infrastructure")));
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<SubsDbContext>();
 
 
 
@@ -53,6 +50,13 @@ namespace Subs
                 options.Password.RequiredUniqueChars = 0;
             });
 
+            services.AddResponseCompression();
+
+
+
+            services.AddTransient<CarService>();
+            services.AddTransient<RecipeService>();
+            services.AddMemoryCache();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -75,6 +79,8 @@ namespace Subs
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseResponseCompression();
 
             app.UseAuthentication();
             app.UseAuthorization();

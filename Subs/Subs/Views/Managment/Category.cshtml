@@ -1,0 +1,34 @@
+﻿@model Subs.Domain.Entities.ViewModels.CategoryViewModel
+
+<h2>Добавление категории</h2>
+<form method="post">
+    <div>
+        <label for="category">введите название категории:</label>
+        <br />
+        <input type="text" required name="Category.Name" id="category"/>
+    </div>
+
+    <input type="submit" value="добавить" class="btn btn-primary"/>
+</form>
+
+<h2>Категории</h2>
+
+<table class="table">
+    <thead class="thead">
+        <tr>
+            <th scope="col">Категория</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var element in Model.Categories)
+        {
+            <tr>
+                <th>@element.Name</th>
+                <th>
+                    @Html.ActionLink($"Удалить", "CategoryRemove", "Managment", new { id = element.Id }, null)
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

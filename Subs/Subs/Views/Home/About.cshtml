@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h3>Мы находимся здесь! 13 этаж, аудитория 1313</h3>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var kpfu = { lat: 55.7923, lng: 49.1223 };
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 17, center: kpfu });
+            var marker = new google.maps.Marker({ position: kpfu, map: map });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaF0J6E4psjW54hvis8bZsJbvp64PiDp0&callback=initMap">
+    </script>
+</body>
+</html>

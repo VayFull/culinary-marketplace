@@ -1,0 +1,33 @@
+﻿@model Recipe
+@{
+    ViewData["Title"] = "AddRecipe";
+}
+
+<h1>Добавление рецепта</h1>
+<form method="post" class="form-group">
+    <label for="name">Введите название рецепта</label>
+    <br />
+    <input type="text" name="name" id="name" />
+    <br />
+    <label for="description">рецепт</label>
+    <br />
+    <textarea style="resize:none; width:100%; height:500px;" name="Description" id="description"></textarea>
+    <br />
+    <label for="imageurl">ссылка на картинку</label>
+    <br />
+    <input type="text" name="ImageUrl" id="imageurl" />
+    <br />
+    <div>
+        <p>Хотите включить монетизацию для рецептов? Купите подписку! ссылка на подписку</p>
+        <label for="isFree">Бесплатный ли будет рецепт?</label>
+        <br />
+        <input type="checkbox" name="IsFree" id="isFree" />
+        <br />
+        <label for="price">Бесплатный ли будет рецепт?</label>
+        <br />
+        <input type="number" name="Price" id="price" />
+    </div>
+    <br />
+    <input type="submit" value="добавить" class="btn-primary" />
+</form>
+

@@ -10,6 +10,8 @@ namespace Subs.Domain.Entities
         public string Name { get; set; }
         public bool IsFree { get; set; }
         public int? Price { get; set; }
-        public List<CategoryRecipe> CategoryRecipes { get; set; } = new List<CategoryRecipe>();
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
+        public List<CategoryRecipe> CategoriesRecipes { get; set; } = new List<CategoryRecipe>();
     }
 }

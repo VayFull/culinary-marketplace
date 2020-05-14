@@ -8,6 +8,6 @@ namespace Subs.Domain.Entities
     {
         public string Name { get; set; }
         public int Id { get; set; }
-        public List<CategoryRecipe> CategoryRecipes { get; set; } = new List<CategoryRecipe>();
+        public List<CategoryRecipe> CategoriesRecipes { get; set; } = new List<CategoryRecipe>();
     }
 }
