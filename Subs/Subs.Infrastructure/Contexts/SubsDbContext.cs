@@ -10,6 +10,8 @@ namespace Subs.Infrastructure.Contexts
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<CategoryRecipe> CategoriesRecipes { get; set; }
         public DbSet<UserRecipe> UsersRecipes { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<UserKey> UserKeys { get; set; }
         public SubsDbContext(DbContextOptions<SubsDbContext> options):base(options)
         {
             Database.EnsureCreated();

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Book>
+<h2>управление книгами</h2>
+
+<a href="/Managment/AddBook">добавление новой книги</a>
+
+<h3>Список добавленных книг</h3>
+
+<table class="table">
+    <thead class="thead">
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Автор</th>
+            <th scope="col">Ссылка на скачивание</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var element in Model)
+        {
+            <tr>
+                <th scope="row">@element.Name</th>
+                <td>@element.Author</td>
+                <td><a href="/Managment/DownloadBook/@element.Id">скачать</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

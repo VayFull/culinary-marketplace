@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h1>Книги рецептов</h1>
+<h2>поиск</h2>
+<form method="post">
+    <input type="search" name="search"/>
+    <input type="submit" value="найти"/>
+</form>
+<h2>результаты</h2>
+<table class="table">
+    <thead class="thead">
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Автор</th>
+            <th scope="col">Ссылка на скачивание</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var element in Model)
+        {
+            <tr>
+                <th scope="row">@element.Name</th>
+                <td>@element.Author</td>
+                <td><a href="/Home/DownloadBook/@element.Id">скачать</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

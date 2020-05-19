@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Subs.Infrastructure.Contexts;
@@ -9,9 +10,10 @@ using Subs.Infrastructure.Contexts;
 namespace Subs.Infrastructure.Migrations
 {
     [DbContext(typeof(SubsDbContext))]
-    partial class SubsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200516091726_books")]
+    partial class books
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,9 +166,6 @@ namespace Subs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("FileName")
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -301,19 +300,6 @@ namespace Subs.Infrastructure.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Subs.Domain.Entities.UserKey", b =>
-                {
-                    b.Property<string>("Username")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Key")
-                        .HasColumnType("text");
-
-                    b.HasKey("Username");
-
-                    b.ToTable("UserKeys");
                 });
 
             modelBuilder.Entity("Subs.Domain.Entities.UserRecipe", b =>

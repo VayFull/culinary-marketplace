@@ -1,0 +1,20 @@
+﻿@model Book
+<h2>Меню добавления книг</h2>
+
+<form enctype="multipart/form-data" method="post">
+    <label for="name">Введите название книги</label>
+    <br />
+    <input type="text" id="name" name="Name" required/>
+    <br />
+    <label for="author">Введите автора книги</label>
+    <br />
+    <input type="text" id="author" name="Author" required/>
+    <br />
+    <label for="file">Прикрепите книгу</label>
+    <br />
+    <input type="file" id="file" name="file" required/>
+    <br />
+    <br />
+    <input type="submit" class="btn-primary" value="добавить"/>
+</form>
+

@@ -65,5 +65,70 @@ namespace Subs.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Books()
+        {
+            return View(_context.Books);
+        }
+
+        [HttpPost]
+        public IActionResult Books(string search)
+        {
+            if (search == null || search == "")
+                return View(_context.Books);
+            var normalizedSearch = search.ToUpper();
+            return View(_context.Books.Where(x => x.Author.ToUpper().Contains(normalizedSearch) || x.Name.ToUpper().Contains(normalizedSearch)).ToList());
+        }
+
+        public IActionResult DownloadBook(int id)
+        {
+            var book = _context.Books.Find(id);
+            if (book == null)
+                return NotFound();
+            string fileName = book.FileName;
+            string filePath = GetPath() + fileName;
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+            return File(fileBytes, "application/force-download", fileName);
+        }
+
+        private string GetPath()
+        {
+            var typeOfController = GetType();
+            var path = typeOfController.Assembly.Location;
+            var filePath = path.Remove(path.Length - 37, 37);
+
+            filePath += @"Files\\";
+
+            return filePath;
+        }
+
+        public IActionResult Api()
+        {
+            return View();
+        }
+
+        public IActionResult GetApiKey()
+        {
+            var user = User.Identity.Name;
+            var userKey = _context.UserKeys.Find(user);
+            return View(userKey);
+        }
+
+        public IActionResult GetKey()
+        {
+            var user = User.Identity.Name;
+            if (_context.UserKeys.Find(user) == null)
+            {
+                var currentTime = DateTime.Now;
+                var notHashedKey = user + new Random().Next() + currentTime;
+                var key = HashService.GetHashString(notHashedKey);
+                _context.UserKeys.Add(new UserKey { Key = key, Username = user });
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("GetApiKey");
+        }
     }
 }

@@ -1,0 +1,16 @@
+﻿@model UserKey
+@{
+    ViewData["Title"] = "GetApiKey";
+}
+@if (Model != null)
+{
+    <p>Ваш api ключ:</p>
+    <input readonly type="text" value="@Model.Key" />
+}
+else
+{
+    <p>на данный момент вы еще не получали ключ</p>
+    <a href="/Home/GetKey/">получить ключ</a>
+}
+
+
